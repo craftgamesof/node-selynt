@@ -1,132 +1,60 @@
-# Node Selynt
-*Open-source alternative to PM2 Plus*  
-*Alternativa open-source ao PM2 Plus*
+# CodeIgniter 4 Framework
 
-> **Nota / Note:** Projeto **não afiliado** ao PM2/pm2.io.  
-> **Not affiliated** with PM2/pm2.io.
+## What is CodeIgniter?
 
----
+CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
+More information can be found at the [official site](https://codeigniter.com).
 
-## 🇧🇷 Português
+This repository holds the distributable version of the framework.
+It has been built from the
+[development repository](https://github.com/codeigniter4/CodeIgniter4).
 
-### MOTIVAÇÃO
-O **Node Selynt** nasce como continuação comunitária do **pm2-webui**, que ficou **sem manutenção por anos**, deixando **dependências desatualizadas** e **risco de segurança** em pacotes. Este repositório visa:
-- Atualizar e auditar dependências;
-- Corrigir bugs pendentes;
-- Modernizar a interface;
-- Manter releases estáveis e seguras.
+More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
 
-### RECURSOS
-- Login seguro :white_check_mark:
-- Gerenciamento de aplicações :white_check_mark:
-- Visualizador de logs :white_check_mark:
-- Interface responsiva :white_check_mark:
-- Deploy manual e automático (webhooks do GitHub)
-- Gerenciamento de variáveis de ambiente
+You can read the [user guide](https://codeigniter.com/user_guide/)
+corresponding to the latest version of the framework.
 
-### USO
-```bash
-git clone https://github.com/craftgamesof/node-selynt
-cd node-selynt
-npm install
-cp env.example .env
-npm run setup-admin-user   # Necessário para login
-npm start
-````
+## Important Change with index.php
 
-### DESENVOLVIMENTO
+`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
+for better security and separation of components.
 
-```bash
-npm run start:dev
-```
+This means that you should configure your web server to "point" to your project's *public* folder, and
+not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
+framework are exposed.
 
-### TODO
+**Please** read the user guide for a better explanation of how CI4 works!
 
-* [ ] suporte a caminhos relativos
-* [ ] usar fs-extra para operações de filesystem
-* [ ] usar [jsonfile](https://www.npmjs.com/package/jsonfile) para configs
-* [ ] substituir exec.util por [execa](https://www.npmjs.com/package/execa)
-* [ ] adicionar gestão de env via formulário
-* [ ] logs em tempo real
-* [ ] visualizador de logs de deploy
-* [ ] abortar deploy
-* [ ] gatilhos de deploy
-* [ ] terminal web
-* [ ] estratégias de zero-downtime (blue-green, rolling etc.)
-* [ ] provedor Docker*
+## Repository Management
 
-### CAPTURAS DE TELA
+We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
+We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
+FEATURE REQUESTS.
 
-![Node Selynt Login](/screenshots/login.png?raw=true "Node Selynt Login")
-![Node Selynt Dashboard](/screenshots/dashboard.png?raw=true "Node Selynt Dashboard")
-![Node Selynt App](/screenshots/app.png?raw=true "Node Selynt App")
+This repository is a "distribution" one, built by our release preparation script.
+Problems with it can be raised on our forum, or as issues in the main repository.
 
-### LICENÇA
+## Contributing
 
-MIT — Copyright (c) 2025 **Craft Games**
-Trabalho original © 2022 **Surya T**
+We welcome contributions from the community.
 
----
+Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
 
-## 🇺🇸 English
+## Server Requirements
 
-### MOTIVATION
+PHP version 8.1 or higher is required, with the following extensions installed:
 
-**Node Selynt** is a community-driven continuation of **pm2-webui**, which went **unmaintained for years**, leaving **outdated dependencies** and **security risk** across packages. This repository aims to:
+- [intl](http://php.net/manual/en/intl.requirements.php)
+- [mbstring](http://php.net/manual/en/mbstring.installation.php)
 
-* Update and audit dependencies;
-* Fix long-standing bugs;
-* Modernize the UI;
-* Ship stable and secure releases.
+> [!WARNING]
+> - The end of life date for PHP 7.4 was November 28, 2022.
+> - The end of life date for PHP 8.0 was November 26, 2023.
+> - If you are still using PHP 7.4 or 8.0, you should upgrade immediately.
+> - The end of life date for PHP 8.1 will be December 31, 2025.
 
-### FEATURES
+Additionally, make sure that the following extensions are enabled in your PHP:
 
-* Secure login :white_check_mark:
-* Application management :white_check_mark:
-* Log viewer :white_check_mark:
-* Responsive UI :white_check_mark:
-* Manual and automatic deployment (GitHub webhooks)
-* Environment variables management
-
-### USAGE
-
-```bash
-git clone https://github.com/craftgamesof/node-selynt
-cd node-selynt
-npm install
-cp env.example .env
-npm run setup-admin-user   # Required for login
-npm start
-```
-
-### FOR DEVELOPMENT
-
-```bash
-npm run start:dev
-```
-
-### TODO
-
-* [ ] support relative paths
-* [ ] use fs-extra for filesystem ops
-* [ ] use [jsonfile](https://www.npmjs.com/package/jsonfile) for config
-* [ ] replace exec.util with [execa](https://www.npmjs.com/package/execa)
-* [ ] add form-based env management
-* [ ] realtime logs
-* [ ] deployment log viewer
-* [ ] deployment abort
-* [ ] deployment triggers
-* [ ] web terminal
-* [ ] zero-downtime strategies (blue-green, rolling, etc.)
-* [ ] docker provider*
-
-### SCREENSHOTS
-
-![Node Selynt Login](/screenshots/login.png?raw=true "Node Selynt Login")
-![Node Selynt Dashboard](/screenshots/dashboard.png?raw=true "Node Selynt Dashboard")
-![Node Selynt App](/screenshots/app.png?raw=true "Node Selynt App")
-
-### LICENSE
-
-MIT — Copyright (c) 2025 **Craft Games**
-Original work © 2022 **Surya T**
+- json (enabled by default - don't turn it off)
+- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
+- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
